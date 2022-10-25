@@ -1,0 +1,1 @@
+roles = ('ADMIN', 'TEAM-SPOKESMAN')

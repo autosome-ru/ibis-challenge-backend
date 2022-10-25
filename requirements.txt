@@ -1,0 +1,16 @@
+#Flask==2.2.2
+Flask-Login==0.6.2
+oauthlib==3.2.1
+pyOpenSSL==22.0.0
+requests==2.28.1
+SQLAlchemy==1.4.41
+pathlib==1.0.1
+flask_sqlalchemy==2.5.1
+#flask_restx==0.5.1
+#werkzeug==2.2.2
+Werkzeug <= 2.1.2
+flask == 2.1.2
+flask-restx >= 0.5.1
+flask-cors==3.0.10
+requests-oauthlib
+flask-dance
