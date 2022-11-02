@@ -1,5 +1,9 @@
+./gitignore
+static/
+templates/
+
 /IBIS_COMPETITION.db
 /identifier.sqlite
 
 __pycache__/
-*.py[cod]
+*.pyc
