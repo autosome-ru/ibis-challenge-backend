@@ -1,6 +1,6 @@
 from flask import Flask, Blueprint
 
-from db_config import Config
+from config import Config
 from github_config import *
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -14,7 +14,6 @@ logger.setLevel(app.config['LOGGER_LEVEL'])
 db = SQLAlchemy(app)
 session = db.session
 
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = "1"
 app.secret_key = os.urandom(24)
 
 
