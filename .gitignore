@@ -6,5 +6,4 @@ templates/
 /IBIS_COMPETITION.db
 /identifier.sqlite
 
-!**/__pycache__/
-*.pyc
+*/__pycache__/*
