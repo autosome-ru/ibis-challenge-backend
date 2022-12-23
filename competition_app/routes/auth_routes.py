@@ -1,9 +1,9 @@
 from flask_restx import Resource
-from competition_app import api, logger
+from competition_app import api, logger, fetch_github_user
 from flask import request, g
 from competition_app.routes.global_routes import role_required
-from competition_app.serializers.serializers import github_code_model, token_model_base, user_account_model_data
-from competition_app.service import services, github_service
+from competition_app.serializers import github_code_model, token_model_base, user_account_model_data
+from competition_app.service import github_service, general_services
 
 auth_nsp = api.namespace('Authorization', path='/auth', description='Operations related to authentication')
 
@@ -33,11 +33,11 @@ class CodeAuth(Resource):
         access_token = acc_token_result["access_token"]
 
         # Step 3. Request user data from GitHub given the access token
-        user_success, user_result = github_service.fetch_github_user(access_token)
+        user_success, user_result = fetch_github_user(access_token)
         if not user_success:
             api.abort(406, 'Fetching of GitHub user was unsuccessful')
 
-        exists, user = services.register_user(user_result)
+        exists, user = general_services.register_user(user_result)
         logger.info('|%s| user exists? - %s', "CodeAuth/post", exists)
         return user
 

@@ -2,7 +2,7 @@ from functools import wraps
 from flask import g, request
 from competition_app import api, logger
 from competition_app.constants import roles
-from competition_app.service import services
+from competition_app.service import general_services
 
 
 def get_token():
@@ -19,20 +19,20 @@ def role_required(role_id=len(roles) - 1):
         def wrapper(*args, **kwargs):
             try:
                 logger.info('|%s| is called', "role_required")
-                g.current_user = user = services.get_user(get_token(), 'token')
+                g.current_user = user = general_services.get_user(get_token(), 'token')
                 if user is None:
                     logger.info('|%s| user is NONE', "role_required")
                     raise ValueError
                 current_role = user.role
                 logger.info('|%s| role of user: %s', "role_required", current_role)
-                if not services.check_last_seen(user):
+                if not general_services.check_last_seen(user):
                     logger.info('|%s| token of user expired', "role_required")
                     api.abort(403, 'token expired')
             except ValueError:
                 logger.info('|%s| some error, invalid token', "role_required")
                 api.abort(401, 'invalid token')
 
-            services.update_last_seen(user)
+            general_services.update_last_seen(user)
             current_role_index = roles.index(current_role)
             if current_role_index > role_id:
                 api.abort(403, 'Access denied')

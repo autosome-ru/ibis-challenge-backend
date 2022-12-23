@@ -36,7 +36,7 @@ def check_last_seen(user):
     # TODO WARNING! might reconsider expiration time of of tokens
     is_expired = time_since_last_seen.days > 0 or time_since_last_seen.seconds >= 48 * 3600
     # TODO TEST VALUE
-    #is_expired = time_since_last_seen.seconds >= 0
+    # is_expired = time_since_last_seen.seconds >= 0
     logger.info('|%s| time elapsed %d of %d seconds, (%s)', "check_last_seen", time_since_last_seen.seconds, 48 * 3600,
                 is_expired)
     logger.info('|%s| result is %s, %s', "check_last_seen", not is_expired, "expired" if is_expired else "not expired")
@@ -128,3 +128,14 @@ def update_or_create_team(user, data):
     session.commit()
 
     return user.team
+
+
+def get_call_params(params_parser):
+    print("get_call_params called", params_parser)
+    call_params = params_parser.parse_args()
+    print(call_params)
+    mode = call_params['mode']
+    method = call_params['method']
+    discipline = call_params['discipline']
+    tf = call_params['tf']
+    return mode, method, discipline, tf

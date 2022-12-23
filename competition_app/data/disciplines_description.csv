@@ -1,0 +1,8 @@
+name,view,comment
+A2G,Artificial to genomic,
+G2A,Genomic to artificial,
+AFS,GHT-SELEX,
+CHS,ChIP-Seq,
+HTS,HT-SELEX,
+PBM,Protein binding microarrays,
+SMS,SMiLE-Seq,
